@@ -21,7 +21,6 @@ annotate RiskService.Risks with @(
     LineItem        : [
         {Value : title},
         {Value : miti_ID},
-        {Value : owner},
         {
             Value       : prio,
             Criticality : criticality
@@ -34,14 +33,14 @@ annotate RiskService.Risks with @(
 });
 
 // Risk Object Page
-annotate RiskService.Risks with @(
+  annotate RiskService.Risks with @(
     UI : {
-    FilterFacets : [{
+    Facets : [{
         $Type  : 'UI.ReferenceFacet',
         Label  : 'Main',
         Target : '@UI.FieldGroup#Main',
     }],
-    FieldGroup   : {Data : [
+    FieldGroup  #Main : {Data : [
         {Value : miti_ID},
         {Value : owner},
         {
@@ -52,7 +51,5 @@ annotate RiskService.Risks with @(
             Value       : impact,
             Criticality : criticality
         }
-    ]
-
-    }
+    ]},
 });
