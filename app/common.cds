@@ -37,7 +37,7 @@ miti   @(
                 ValueListProperty: 'ID'
             }, {
                 $Type: 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty:'descr'
+                ValueListProperty:'description'
             }
         ]
     },
