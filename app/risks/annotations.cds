@@ -1,8 +1,7 @@
 using RiskService as service from '../../srv/risk-service';
 
 //Risk List Report Page
-annotate RiskService.Risks with @(
-    UI : {
+annotate RiskService.Risks with @(UI : {
     HeaderInfo      : {
         TypeName       : 'Risk',
         TypeNamePlural : 'Risks',
@@ -21,11 +20,13 @@ annotate RiskService.Risks with @(
     LineItem        : [
         {Value : title},
         {Value : miti_ID},
+        {Value : owner},
+        {Value : bp_BusinessPartner},
         {
             Value       : prio,
             Criticality : criticality
         },
-                {
+        {
             Value       : impact,
             Criticality : criticality
         },
@@ -33,16 +34,16 @@ annotate RiskService.Risks with @(
 });
 
 // Risk Object Page
-  annotate RiskService.Risks with @(
-    UI : {
-    Facets : [{
+annotate RiskService.Risks with @(UI : {
+    Facets           : [{
         $Type  : 'UI.ReferenceFacet',
         Label  : 'Main',
         Target : '@UI.FieldGroup#Main',
     }],
-    FieldGroup  #Main : {Data : [
+    FieldGroup #Main : {Data : [
         {Value : miti_ID},
         {Value : owner},
+        {Value : bp_BusinessPartner},
         {
             Value       : prio,
             Criticality : criticality

@@ -9,13 +9,14 @@ prio @title: 'Priority';
 descr @title: 'Description';
 miti @title: 'Mitigation';
 impact @title: 'Impact';
+bp @title: 'Business Partner';
 }
 
 //Annotate Mitigation elements
 annotate rm.Mitigations with {
 ID @(
     UI.Hidden,
-    Commong: {Text: descr}
+    Commong: {Text: description}
 );
 owner @title : 'Owner';
 description @title : 'Description';
@@ -40,7 +41,34 @@ miti   @(
                 ValueListProperty:'description'
             }
         ]
-    },
+    }
+});
+}
+
+annotate rm.Risks with {
+bp   @(
+    Common : {
+    //show text, not id for mitigation in the context of risks
+    Text : bp.LastName,
+    TextArrangement : #TextOnly,
+    ValueList : {
+        Label:'Business Partners',
+        CollectionPath : 'BusinessPartners',
+        Parameters: [
+            {
+                $Type: 'Common.ValueListParameterInOut',
+                LocalDataProperty:bp_BusinessPartner,
+                ValueListProperty: 'BusinessPartner'
+            }, {
+                $Type: 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty:'LastName'
+            },
+            {
+                $Type: 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty:'FirstName'
+            }
+        ]
+    }
 });
 }
 
