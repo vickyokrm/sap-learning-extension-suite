@@ -1,0 +1,20 @@
+{
+    "welcomeFile": "/index.html",
+    "authenticationMethod": "route",
+    "logout": {
+        "logoutEndpoint": "/do/logout",
+        "logoutPage":"/"
+    },
+    "routes": [{
+        "source": "^/app/(.*)$",
+        "target": "$1",
+        "localDir":"resources",
+        "authenticationType": "xsuaa"
+      },
+      {
+        "source": "^/service/(.*)$",
+        "destination":"srv-binding",
+        "authenticationType": "xsuaa"
+      }
+    ]
+  }

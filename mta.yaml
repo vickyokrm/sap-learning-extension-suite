@@ -15,7 +15,6 @@ build-parameters:
       commands:
         - npm install --production
         - npx -p @sap/cds-dk cds build --production
-
 modules:
   # --------------------- SERVER MODULE ------------------------
   - name: risk-management-srv
@@ -46,6 +45,35 @@ modules:
       - name: risk-management-xsuaa
       - name: risk-management-db
 
+  # -------------------- APPROUTER ------------------------
+  - name: risk-management-approuter
+    # ------------------------------------------------------------
+    type: nodejs
+    path: approuter
+    requires:
+      # 'hana' and 'xsuaa' resources extracted from CAP configuration
+      - name: risk-management-xsuaa
+      - name: srv-api
+        group: destinations
+        properties:
+          forwardAuthToken: true
+          strictSSL: true
+          name: srv-binding
+          url: "~{srv-url}"
+    build-parameters: 
+        requires: 
+          - name: risk-management-app
+            artifacts: 
+              - ./*
+            target-path: resources
+
+  # -------------------- UI ------------------------
+  - name: risk-management-app
+    # ------------------------------------------------------------
+    type: html5
+    path: app
+    build-parameters:
+      supported-platforms: []
 resources:
   # services extracted from CAP configuration
   # 'service-plan' can be configured via 'cds.requires.<name>.vcap.plan'
@@ -84,3 +112,4 @@ resources:
     parameters:
       service: destination
       service-plan: lite
+
