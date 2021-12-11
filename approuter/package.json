@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/@sap/approuter/approuter.js"
+    "start": "node_modules/@sap/approuter/approuter.js"
   },
   "keywords": [],
   "author": "",
